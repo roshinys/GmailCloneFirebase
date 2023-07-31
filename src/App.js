@@ -1,12 +1,23 @@
 import "./App.css";
-import Header from "./components/Layout/Header/Header";
+import RootLayout from "./RootLayout";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Mail from "./components/Pages/Mail/Mail";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/mail",
+        element: <Mail />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
