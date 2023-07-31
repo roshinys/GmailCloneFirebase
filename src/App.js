@@ -3,6 +3,8 @@ import RootLayout from "./RootLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Mail from "./components/Pages/Mail/Mail";
 import MailList from "./components/Pages/Mail/MailList";
+import SendMail from "./components/Pages/SendMail/SendMail";
+import { useSelector } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  const sendMessageIsOpen = useSelector(
+    (state) => state.mail.sendMessageIsOpen
+  );
+  return (
+    <>
+      <RouterProvider router={router} />
+      {sendMessageIsOpen && <SendMail />}
+    </>
+  );
 }
 
 export default App;
